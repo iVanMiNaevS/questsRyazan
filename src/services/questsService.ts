@@ -1,19 +1,34 @@
 import {IQuestData} from "@/types/quests.interface";
-import {apiUrl} from "./apiUrl";
+import {apiUrl, ServiceResponse} from "./apiConfig";
 
 export const questsService = {
-	getQuests: async () => {
+	getQuests: async (): Promise<ServiceResponse<IQuestData>> => {
 		try {
+			if (!process.env.NEXT_PUBLIC_QUEST_API_TOKEN) {
+				throw new Error("API token is not configured");
+			}
+
 			const response = await fetch(`${apiUrl}/api/Quest/getMinimalList`, {
 				headers: {
-					Authorization:
-						"a4e27aabab1a1564292e92d1761f61b2bfc13dd1b65cd1066879272c1d1b3aa8843f959ca5d3abfdb4a1919fcf9d0673466e7645b50a4d00418f0dd5a22c2ea9",
+					Authorization: process.env.NEXT_PUBLIC_QUEST_API_TOKEN,
 				},
+				next: {revalidate: 3600},
 			});
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
 			const quests: IQuestData = await response.json();
-			return {data: quests, message: "ok"};
+			return {data: quests, message: "ok", ok: true};
 		} catch (error) {
-			return {data: undefined, message: error};
+			let errorMessage = "Unknown error occurred";
+
+			if (error instanceof Error) {
+				errorMessage = error.message;
+			} else if (typeof error === "string") {
+				errorMessage = error;
+			}
+
+			return {data: undefined, message: errorMessage, ok: false};
 		}
 	},
 };

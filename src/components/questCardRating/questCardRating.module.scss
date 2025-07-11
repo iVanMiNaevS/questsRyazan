@@ -1,0 +1,43 @@
+.quest {
+	&__card {
+		width: 100%;
+		display: flex;
+		gap: 30px;
+		justify-content: flex-start;
+		align-items: center;
+		padding: 25px 20px 25px 0;
+		border-top: 1px solid var(--blackSmoke);
+		&__ratingWrapp {
+			display: flex;
+			gap: 15px;
+			flex: 0 0 130px;
+			svg {
+				width: 30px;
+				height: 30px;
+			}
+			path {
+				fill: var(--redOrange);
+			}
+		}
+		img {
+			height: 150px;
+			object-fit: cover;
+			min-width: 200px;
+			max-width: 200px;
+		}
+		h3 {
+			padding-bottom: 0.625rem;
+		}
+		p {
+			color: var(--lightGrey);
+			overflow: hidden;
+			display: -webkit-box;
+			-webkit-line-clamp: 3;
+			line-clamp: 3;
+			-webkit-box-orient: vertical;
+		}
+		a {
+			margin-top: 30px;
+		}
+	}
+}

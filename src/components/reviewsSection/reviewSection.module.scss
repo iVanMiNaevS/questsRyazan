@@ -1,0 +1,125 @@
+section.review {
+	padding: 4.375rem 0;
+	.review {
+		&__header {
+			display: flex;
+			justify-content: space-between;
+			padding-bottom: 3.75rem;
+		}
+		&__cardWrapp {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1.25rem;
+		}
+		&__btnCont {
+			text-align: center;
+			padding-top: 1.875rem;
+			button {
+				margin: 0 auto;
+			}
+		}
+	}
+}
+.skullRating {
+	display: flex;
+	gap: 5px;
+	padding-top: 10px;
+}
+
+.skull {
+	cursor: pointer;
+	path {
+		fill: var(--redOrange);
+	}
+}
+.skullWhite {
+	cursor: pointer;
+
+	path {
+		fill: white;
+	}
+}
+
+.rating {
+	padding: 40px 0;
+}
+
+.modal {
+	&__forms {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		&__selectWrapp {
+			position: relative;
+		}
+		&__row {
+			position: absolute;
+			right: 20px;
+			top: 45%;
+			transform: translateY(-50%);
+			width: 10px;
+			height: 10px;
+			svg {
+				transform: rotate(-90deg);
+				object-fit: contain;
+			}
+		}
+		select {
+			-webkit-appearance: none;
+			box-sizing: border-box;
+			border-radius: 5px;
+			width: 100%;
+			padding: 20px;
+			border: 1px solid var(--redOrange);
+			outline: none;
+			background-color: transparent;
+			width: 100%;
+			option {
+				background-color: var(--blackTwo);
+			}
+		}
+		&__input {
+			box-sizing: border-box;
+			border-radius: 5px;
+			width: 100%;
+			padding: 20px;
+			border: 1px solid var(--redOrange);
+			outline: none;
+			background-color: transparent;
+		}
+		&__checkBox {
+			display: flex;
+			input {
+				display: none;
+			}
+			label {
+				display: flex;
+				gap: 10px;
+			}
+			input:checked + label::before {
+				content: url("/check.35d7130a.svg");
+			}
+			label::before {
+				cursor: pointer;
+				content: "";
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 18px;
+				height: 18px;
+				padding: 1px;
+				border: 1px solid var(--redOrange);
+				border-radius: 5px;
+				background-color: transparent;
+			}
+			span {
+				width: calc(100% - 30px);
+				display: block;
+				color: var(--lightGrey);
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				user-select: none;
+			}
+		}
+	}
+}

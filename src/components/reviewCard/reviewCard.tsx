@@ -1,20 +1,22 @@
 import React from "react";
 import styles from "./reviewCard.module.scss";
 import Image from "next/image";
+import {IReview} from "@/types/reviews.interface";
+import {formatDateFromISO} from "@/utils/converDateFromIso";
 type props = {
-	info: {name: string; reviewCount: number; text: string; date: string};
+	info: IReview;
 };
 export const ReviewCard = ({info}: props) => {
 	return (
 		<div className={styles.review}>
 			<div>
 				<div className={styles.review__header}>
-					<p className="textBold">{info.name}</p>
+					<p className="textBold">{info.author}</p>
 					<div className={styles.review__skulls}>
 						{Array(5)
 							.fill(0)
 							.map((_, index) => {
-								return index < info.reviewCount ? (
+								return index < info.score ? (
 									<svg
 										key={index}
 										className={styles.skull}
@@ -45,7 +47,7 @@ export const ReviewCard = ({info}: props) => {
 				<p className={`textRegular ${styles.review__text}`}>{info.text}</p>
 			</div>
 			<div className={styles.review__footer}>
-				<p className="categories">{info.date}</p>
+				<p className="categories">{formatDateFromISO(info.date)}</p>
 				<a
 					className="categories"
 					href="https://yandex.ru/maps/11/ryazan/?ll=39.756355%2C54.620570&mode=poi&poi%5Bpoint%5D=39.756296%2C54.620577&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D93980634651&tab=reviews&z=21"

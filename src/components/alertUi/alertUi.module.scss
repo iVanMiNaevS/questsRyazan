@@ -1,0 +1,35 @@
+// components/ui/alert.module.scss
+.alert {
+	position: fixed;
+	bottom: 40px;
+	right: 40px;
+	min-width: 300px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	border: 1px solid #b91c1c;
+	background-color: #b91c1c;
+	padding: 1rem;
+	border-radius: 0.375rem;
+
+	.message {
+		flex: 1;
+	}
+
+	.closeButton {
+		color: #ef4444;
+		cursor: pointer;
+
+		&:hover {
+			color: #b91c1c;
+		}
+	}
+
+	.closeIcon {
+		height: 1.25rem;
+		width: 1.25rem;
+		display: block;
+		font-weight: bold;
+	}
+}

@@ -1,4 +1,5 @@
 .header {
+	position: relative;
 	background: var(--blackTwo);
 	height: 100px;
 	padding: 10px 0px;
@@ -48,5 +49,85 @@
 			font-size: clamp(18px, 1.6vw, 22px);
 			font-weight: 700;
 		}
+	}
+}
+
+.burger {
+	display: none;
+	flex-direction: column;
+	justify-content: space-around;
+	width: 24px;
+	height: 24px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	z-index: 10;
+
+	span {
+		width: 24px;
+		height: 2px;
+		background: white;
+		transition: all 0.5s ease;
+	}
+}
+
+.mobileMenuWrapper {
+	display: none;
+}
+
+.mobileMenu {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	background: var(--blackTwo);
+	padding: 0 1rem;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.5s ease;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	z-index: 100;
+	&.open {
+		max-height: 300px;
+	}
+
+	nav {
+		display: flex;
+		flex-direction: column;
+		padding: 0;
+	}
+}
+
+.mobileContacts {
+	padding: 1rem 0;
+	text-align: left;
+	display: flex;
+	gap: 10px;
+}
+
+// Адаптивные стили
+@media (max-width: 930px) {
+	.burger {
+		display: flex;
+	}
+
+	.mobileMenuWrapper {
+		display: block;
+	}
+	.header__container nav,
+	.header .header__contactsContainer {
+		display: none;
+	}
+	.mobileMenu {
+		nav {
+			display: flex;
+		}
+	}
+}
+
+@media (min-width: 931px) {
+	.mobileMenu {
+		display: none;
 	}
 }

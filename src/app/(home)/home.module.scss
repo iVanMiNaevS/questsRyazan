@@ -92,25 +92,3 @@ section.about {
 		padding-bottom: 3.75rem;
 	}
 }
-section.review {
-	padding: 4.375rem 0;
-	.review {
-		&__header {
-			display: flex;
-			justify-content: space-between;
-			padding-bottom: 3.75rem;
-		}
-		&__cardWrapp {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 1.25rem;
-		}
-		&__btnCont {
-			text-align: center;
-			padding-top: 1.875rem;
-			button {
-				margin: 0 auto;
-			}
-		}
-	}
-}

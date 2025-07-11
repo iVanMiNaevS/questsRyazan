@@ -1,13 +1,12 @@
 import {Metadata} from "next";
 import styles from "./home.module.scss";
 import Link from "next/link";
-import Image from "next/image";
-import CardImage from "@/../public/banner.webp";
 import SwiperUi from "@/components/swiper/swiperUi";
-import {text} from "stream/consumers";
-import {ReviewCard} from "@/components/reviewCard/reviewCard";
 import {QuestCard} from "@/components/questCard/questCard";
 import {questsService} from "@/services/questsService";
+import {AlertUi} from "@/components/alertUi/alertUi";
+import {reviewService} from "@/services/reviewService";
+import {ReviewsSection} from "@/components/reviewsSection/reviewsSection";
 
 export const metadata: Metadata = {
 	title: "Погружение - Квесты Рязань",
@@ -16,31 +15,22 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-	const images = [CardImage, CardImage, CardImage, CardImage, CardImage, CardImage];
-	const reviews = [
-		{name: "Иван", reviewCount: 4, text: "Отличный квест, погружение ПОЛНОЕ🔥", date: "26.03.2025"},
-		{
-			name: "Иван",
-			reviewCount: 4,
-			text: "все понравилось! было интересно! вообще не страшно и хорошо провели время! спасибо за впечатления!",
-			date: "26.03.2025",
-		},
-		{
-			name: "Иван",
-			reviewCount: 4,
-			text: "Очень красивые локации, актеры и музыкальное сопровождение ещё круче!",
-			date: "26.03.2025",
-		},
-		{
-			name: "Иван",
-			reviewCount: 4,
-			text: "Безумно страшно, но так интересно . мы были на уровне хард и это просто бомба, такой экстрим. За игру меня 2 раза поднимали на плечо и тащили, вырезали аппендицит, били. Это вообще пушка. Приду еще ни один раз",
-			date: "26.03.2025",
-		},
+	const images = [
+		"http://localhost:3000/about_1.aab016b4.webp",
+		"http://localhost:3000/about_2.d8ec977d.webp",
+		"http://localhost:3000/about_3.b10aa9be.webp",
+		"http://localhost:3000/about_4.95e1e0ea.webp",
+		"http://localhost:3000/about_5.807f67a9.webp",
+		"http://localhost:3000/about_6.314ff98e.webp",
+		"http://localhost:3000/about_7.ddfeea40.webp",
 	];
-	const {data: quests} = await questsService.getQuests();
+	const {data: quests, ok: okQuests, message: messageQuests} = await questsService.getQuests();
+	const {data: reviews, ok: okReview, message: messageReview} = await reviewService.getReviews();
+
 	return (
 		<>
+			{!okQuests || (!okReview && <AlertUi message={messageQuests || messageReview} />)}
+
 			<section className={styles.hero}>
 				<div className={styles.hero__video}>
 					<video autoPlay loop muted>
@@ -48,7 +38,7 @@ export default async function Home() {
 					</video>
 					<div className={styles.hero__bg}></div>
 				</div>
-				<div className="container" style={{position: "relative", zIndex: "2"}}>
+				<div className={`container`} style={{position: "relative", zIndex: "2"}}>
 					<div className={styles.hero__textWrap}>
 						<h1 className="h1">Погружение. Квесты в &nbsp;Рязани</h1>
 						<p className="textRegular">
@@ -88,22 +78,7 @@ export default async function Home() {
 					<SwiperUi images={images} />
 				</div>
 			</section>
-			<section className={styles.review}>
-				<div className="container">
-					<div className={styles.review__header}>
-						<h2 className="h2">Отзывы</h2>
-						<button className="btn textBold">Оставить отзыв</button>
-					</div>
-					<div className={styles.review__cardWrapp}>
-						{reviews.map((review, index) => (
-							<ReviewCard info={review} key={index} />
-						))}
-					</div>
-					<div className={styles.review__btnCont}>
-						<button className="btn outline textBold">Показать ещё...</button>
-					</div>
-				</div>
-			</section>
+			{reviews ? <ReviewsSection initialReviews={reviews} /> : "Отзывов пока что нет"}
 		</>
 	);
 }

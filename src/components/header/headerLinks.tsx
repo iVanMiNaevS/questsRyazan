@@ -1,14 +1,13 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { FC } from "react";
+import {usePathname} from "next/navigation";
+import {FC} from "react";
 interface Props {
-	links: { text: string; href: string }[];
+	links: {text: string; href: string}[];
 }
 
-const HeaderLinks: FC<Props> = ({ links }) => {
+const HeaderLinks: FC<Props> = ({links}) => {
 	const path = usePathname();
-	console.log(path);
 	return (
 		<>
 			{links.map((link) => {

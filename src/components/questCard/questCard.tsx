@@ -4,7 +4,7 @@ import CardImage from "@/../public/banner.webp";
 import styles from "./questCard.module.scss";
 import Link from "next/link";
 import {IQuest} from "@/types/quests.interface";
-import {apiUrl} from "@/services/apiUrl";
+import {apiUrl} from "@/services/apiConfig";
 
 type props = {
 	info: IQuest;

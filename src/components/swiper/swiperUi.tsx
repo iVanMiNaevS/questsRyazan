@@ -10,7 +10,7 @@ import Image, {StaticImageData} from "next/image";
 import styles from "./swiperUi.module.scss";
 
 type props = {
-	images: StaticImageData[];
+	images: (StaticImageData | string)[];
 };
 
 export default function SwiperUi({images}: props) {
@@ -24,7 +24,6 @@ export default function SwiperUi({images}: props) {
 				}}
 				spaceBetween={20}
 				slidesPerView={3}
-				loop={true}
 			>
 				{images.map((src, index) => (
 					<SwiperSlide key={index}>

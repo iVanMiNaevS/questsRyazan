@@ -5,6 +5,7 @@ import Image from "next/image";
 import Icon from "@/../public/favicon.png";
 import HeaderLinks from "./headerLinks";
 import {links} from "@/utils/navLinks";
+import {MobileMenu} from "./mobileMenu";
 type props = {};
 
 const Header = (props: props) => {
@@ -18,6 +19,9 @@ const Header = (props: props) => {
 						<p className={styles.header__greyText}>квесты в Рязани</p>
 					</div>
 				</Link>
+				{/* мобильное меню */}
+				<MobileMenu />
+				{/* мобильное меню */}
 				<nav>
 					<HeaderLinks links={links} />
 				</nav>
