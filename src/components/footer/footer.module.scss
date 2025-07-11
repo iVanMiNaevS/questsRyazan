@@ -1,0 +1,63 @@
+.footer {
+	background: var(--blackTwo);
+	padding: 1.875rem 0px;
+	&__container {
+		height: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		border-bottom: 1px solid var(--blackSmoke);
+		padding-bottom: 1.875rem;
+		nav {
+			display: flex;
+			gap: 1.3rem;
+		}
+	}
+	&__logoContainer {
+		display: flex;
+		gap: 0.7rem;
+		align-items: center;
+	}
+	&__containerText {
+		display: flex;
+		flex-direction: column;
+		p {
+			line-height: 1.4rem;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			user-select: none;
+			font-size: 1.4rem;
+			font-weight: 400;
+			font-family: var(--font-anonymous);
+		}
+	}
+	&__greyText {
+		font-size: 18px;
+		font-weight: 400;
+		font-family: var(--font-roboto) !important;
+		color: var(--lightGrey);
+	}
+	&__contactsContainer {
+		display: flex;
+		gap: 0.7rem;
+		align-items: center;
+	}
+	&__tel {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: clamp(18px, 1.6vw, 22px);
+		font-weight: 700;
+	}
+	&__legalContainer {
+		padding-top: 2.5rem;
+		display: flex;
+		justify-content: space-between;
+	}
+	&__list {
+		align-items: center;
+		display: flex;
+		gap: 1.25rem;
+	}
+}

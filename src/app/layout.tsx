@@ -1,7 +1,8 @@
-import type { Metadata } from "next";
-import { Roboto, Anonymous_Pro } from "next/font/google";
+import type {Metadata} from "next";
+import {Roboto, Anonymous_Pro} from "next/font/google";
 import "./globals.scss";
 import Header from "@/components/header/header";
+import {Footer} from "@/components/footer/footer";
 
 const roboto = Roboto({
 	variable: "--font-roboto",
@@ -25,16 +26,10 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body
-				className={`${roboto.variable} ${anonymousPro.variable} antialiased`}
-			>
+			<body className={`${roboto.variable} ${anonymousPro.variable} antialiased`}>
 				<Header />
-				<main>
-					<div className="container"> {children}</div>
-				</main>
-				<footer>
-					<div className="container"></div>
-				</footer>
+				<main>{children}</main>
+				<Footer />
 			</body>
 		</html>
 	);

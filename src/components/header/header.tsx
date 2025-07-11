@@ -4,25 +4,15 @@ import Link from "next/link";
 import Image from "next/image";
 import Icon from "@/../public/favicon.png";
 import HeaderLinks from "./headerLinks";
+import {links} from "@/utils/navLinks";
 type props = {};
 
 const Header = (props: props) => {
-	const links = [
-		{ text: "квесты", href: "/" },
-		{ text: "народный рейтинг", href: "/rating" },
-		{ text: "контакты", href: "/contacts" },
-	];
 	return (
 		<header className={styles.header}>
 			<div className={`container ${styles.header__container}`}>
 				<Link href={"/"} className={styles.header__logoContainer}>
-					<Image
-						src={Icon}
-						width={50}
-						height={50}
-						alt="icon"
-						style={{ height: "50px" }}
-					/>
+					<Image src={Icon} width={50} height={50} alt="icon" style={{height: "50px"}} />
 					<div className={styles.header__containerText}>
 						<p>Погружение</p>
 						<p className={styles.header__greyText}>квесты в Рязани</p>
@@ -49,11 +39,7 @@ const Header = (props: props) => {
 							xmlns="http://www.w3.org/2000/svg"
 						>
 							<g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
-							<g
-								id="SVGRepo_tracerCarrier"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-							></g>
+							<g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
 							<g id="SVGRepo_iconCarrier">
 								{" "}
 								<path

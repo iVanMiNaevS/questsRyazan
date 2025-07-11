@@ -1,0 +1,116 @@
+section.hero {
+	height: 600px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: relative;
+
+	.hero {
+		&__textWrap {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			max-width: 700px;
+			margin-bottom: 40px;
+		}
+		&__bg {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 1;
+			background: linear-gradient(180deg, rgba(8, 10, 12, 0.5) 40%, #080a0c);
+		}
+		&__btns {
+			display: flex;
+			gap: 20px;
+		}
+		&__video {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 1;
+			video {
+				object-fit: cover;
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+}
+
+section.quests {
+	padding: 4.375rem 0;
+	h2 {
+		padding-bottom: 3.75rem;
+	}
+	.quests {
+		&__questsWrapp {
+			display: flex;
+			justify-content: space-between;
+			gap: 3.75rem;
+			flex-wrap: wrap;
+		}
+		&__card {
+			display: flex;
+			flex-direction: column;
+			width: calc(50% - 1.875rem);
+			img {
+				height: 280px;
+				object-fit: cover;
+				width: 100%;
+				padding-bottom: 1.875rem;
+			}
+			h3 {
+				padding-bottom: 0.625rem;
+			}
+			p {
+				color: var(--lightGrey);
+				overflow: hidden;
+				display: -webkit-box;
+				-webkit-line-clamp: 4;
+				line-clamp: 4;
+				-webkit-box-orient: vertical;
+				min-height: 84.38px;
+			}
+			a {
+				margin-top: 2.1875rem;
+			}
+		}
+	}
+}
+
+section.about {
+	padding: 4.375rem 0;
+	h2 {
+		padding-bottom: 3.75rem;
+	}
+	p {
+		padding-bottom: 3.75rem;
+	}
+}
+section.review {
+	padding: 4.375rem 0;
+	.review {
+		&__header {
+			display: flex;
+			justify-content: space-between;
+			padding-bottom: 3.75rem;
+		}
+		&__cardWrapp {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1.25rem;
+		}
+		&__btnCont {
+			text-align: center;
+			padding-top: 1.875rem;
+			button {
+				margin: 0 auto;
+			}
+		}
+	}
+}

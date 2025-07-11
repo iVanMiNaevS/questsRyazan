@@ -1,0 +1,28 @@
+.quest {
+	&__card {
+		display: flex;
+		flex-direction: column;
+		width: calc(50% - 1.875rem);
+		img {
+			height: 280px;
+			object-fit: cover;
+			width: 100%;
+			margin-bottom: 1.875rem;
+		}
+		h3 {
+			padding-bottom: 0.625rem;
+		}
+		p {
+			color: var(--lightGrey);
+			overflow: hidden;
+			display: -webkit-box;
+			-webkit-line-clamp: 4;
+			line-clamp: 4;
+			-webkit-box-orient: vertical;
+			min-height: 84.38px;
+		}
+		a {
+			margin-top: 2.1875rem;
+		}
+	}
+}

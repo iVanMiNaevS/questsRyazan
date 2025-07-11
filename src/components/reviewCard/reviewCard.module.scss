@@ -1,0 +1,39 @@
+.review {
+	background-color: var(--blackSmoke);
+	width: calc(33.33% - 13.3333333333px);
+	padding: 1.25rem;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 1.25rem;
+	&__text {
+		overflow: hidden;
+		display: -webkit-box;
+		-webkit-line-clamp: 5;
+		line-clamp: 5;
+		-webkit-box-orient: vertical;
+	}
+	&__header {
+		display: flex;
+		justify-content: space-between;
+		padding-bottom: 1.25rem;
+	}
+	&__skulls {
+		display: flex;
+		gap: 5px;
+	}
+	&__footer {
+		display: flex;
+		justify-content: space-between;
+		a {
+			color: var(--lightGrey);
+		}
+	}
+}
+.skull path {
+	fill: var(--redOrange);
+}
+.skullWhite path {
+	fill: white;
+}
