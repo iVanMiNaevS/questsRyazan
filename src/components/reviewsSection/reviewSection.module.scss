@@ -43,7 +43,7 @@ section.review {
 .rating {
 	padding: 40px 0;
 }
-
+// modal/////////////////////////////////////////////////////////////////
 .modal {
 	&__forms {
 		display: flex;
@@ -119,6 +119,70 @@ section.review {
 				-webkit-user-select: none;
 				-moz-user-select: none;
 				user-select: none;
+			}
+		}
+	}
+}
+// slider////////////////////////////////////////////////////////////////
+.containerSlider {
+	position: relative;
+	display: none;
+}
+.slider__nav {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+	margin-top: 12px;
+}
+.navButton {
+	&:disabled {
+		background: #000;
+	}
+	background-color: transparent;
+	outline: none;
+	border: 1px solid var(--redOrange);
+	width: 34px;
+	height: 34px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 5px;
+
+	svg {
+		width: 24px;
+		height: 24px;
+		object-fit: contain;
+		path {
+			stroke: var(--lightGrey);
+		}
+	}
+
+	&:hover svg {
+		transform: scale(1.1);
+	}
+}
+
+.prev {
+	left: -10px;
+}
+
+.next {
+	right: -10px;
+	transform: rotate(180deg);
+}
+
+@media (max-width: 800px) {
+	.containerSlider {
+		display: block;
+	}
+	section.review {
+		.review {
+			&__cardWrapp {
+				display: none;
+			}
+			&__btnCont {
+				display: none;
 			}
 		}
 	}

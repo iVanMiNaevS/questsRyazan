@@ -4,6 +4,7 @@ import Image from "next/image";
 import {apiUrl} from "@/services/apiConfig";
 import Link from "next/link";
 import {IQuest} from "@/types/quests.interface";
+import {AppRoutes} from "@/utils/linksToPages";
 type props = {
 	info: IQuest;
 };
@@ -28,7 +29,7 @@ export const QuestCardRating = ({info}: props) => {
 			<div className={styles.quest__card__text}>
 				<h3 className="h4">{info.title}</h3>
 				<p className="textRegular">{info.description}</p>
-				<Link href={`/${info.slug}`} className="btn textBold">
+				<Link href={AppRoutes.questBySlug(info.slug)} className="btn textBold">
 					Подробнее
 				</Link>
 			</div>

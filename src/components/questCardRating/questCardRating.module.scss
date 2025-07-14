@@ -41,3 +41,22 @@
 		}
 	}
 }
+
+@media (max-width: 800px) {
+	.quest {
+		&__card {
+			flex-direction: column;
+			img {
+				width: 100%;
+				max-width: none;
+				min-width: none;
+				height: auto;
+				aspect-ratio: 335 / 150;
+			}
+		}
+		&__card__ratingWrapp {
+			flex: auto;
+			width: 100%;
+		}
+	}
+}

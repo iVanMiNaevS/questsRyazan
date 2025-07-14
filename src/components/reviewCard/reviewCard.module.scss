@@ -37,3 +37,14 @@
 .skullWhite path {
 	fill: white;
 }
+
+@media (max-width: 1200px) {
+	.review {
+		width: calc(50% - 1.25rem);
+	}
+}
+@media (max-width: 800px) {
+	.review {
+		width: 100%;
+	}
+}

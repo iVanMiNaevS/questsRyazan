@@ -22,7 +22,7 @@ export const ReviewModal: React.FC<props> = ({onOpen, isOpen}) => {
 		{value: "58", label: "Мясник"},
 		{value: "59", label: "Бездна"},
 	];
-	const [selectQuest, setSelectQuest] = useState("Техасская резня бензопилой");
+	const [selectQuest, setSelectQuest] = useState(optionsQuets[0].label);
 	const [score, setScore] = useState(1);
 	const [selectQuestId, setSelectQuestId] = useState("string");
 	const [author, setAuthor] = useState("");

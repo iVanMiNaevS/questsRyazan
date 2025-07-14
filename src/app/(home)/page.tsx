@@ -7,6 +7,7 @@ import {questsService} from "@/services/questsService";
 import {AlertUi} from "@/components/alertUi/alertUi";
 import {reviewService} from "@/services/reviewService";
 import {ReviewsSection} from "@/components/reviewsSection/reviewsSection";
+import {AppRoutes} from "@/utils/linksToPages";
 
 export const metadata: Metadata = {
 	title: "Погружение - Квесты Рязань",
@@ -25,8 +26,7 @@ export default async function Home() {
 		"http://localhost:3000/about_7.ddfeea40.webp",
 	];
 	const {data: quests, ok: okQuests, message: messageQuests} = await questsService.getQuests();
-	const {data: reviews, ok: okReview, message: messageReview} = await reviewService.getReviews();
-
+	const {data: reviews, ok: okReview, message: messageReview} = await reviewService.getReviews(6);
 	return (
 		<>
 			{!okQuests || (!okReview && <AlertUi message={messageQuests || messageReview} />)}
@@ -40,7 +40,7 @@ export default async function Home() {
 				</div>
 				<div className={`container`} style={{position: "relative", zIndex: "2"}}>
 					<div className={styles.hero__textWrap}>
-						<h1 className="h1">Погружение. Квесты в &nbsp;Рязани</h1>
+						<h1 className="h1">Погружение. Квесты в Рязани</h1>
 						<p className="textRegular">
 							Погружение - это уникальная организация, специализирующаяся на проведении
 							захватывающих квестов-перформансов. Наша задача - погрузить участников в увлекательные
@@ -51,7 +51,7 @@ export default async function Home() {
 						<a href="#quests" className="btn textBold">
 							Выбрать квест
 						</a>
-						<Link href={"/rating"} className="btn outline textBold">
+						<Link href={AppRoutes.RATING} className="btn outline textBold">
 							Рейтинг
 						</Link>
 					</div>
@@ -78,7 +78,8 @@ export default async function Home() {
 					<SwiperUi images={images} />
 				</div>
 			</section>
-			{reviews ? <ReviewsSection initialReviews={reviews} /> : "Отзывов пока что нет"}
+
+			{reviews ? <ReviewsSection initialReviews={reviews.reviews} /> : "Отзывов пока что нет"}
 		</>
 	);
 }

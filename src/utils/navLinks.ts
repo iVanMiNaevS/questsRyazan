@@ -1,5 +1,7 @@
+import {AppRoutes} from "./linksToPages";
+
 export const links = [
-	{text: "квесты", href: "/"},
-	{text: "народный рейтинг", href: "/rating"},
-	{text: "контакты", href: "/contacts"},
+	{text: "квесты", href: AppRoutes.HOME},
+	{text: "народный рейтинг", href: AppRoutes.RATING},
+	{text: "контакты", href: AppRoutes.CONTACTS},
 ];

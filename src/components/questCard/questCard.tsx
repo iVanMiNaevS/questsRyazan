@@ -5,6 +5,7 @@ import styles from "./questCard.module.scss";
 import Link from "next/link";
 import {IQuest} from "@/types/quests.interface";
 import {apiUrl} from "@/services/apiConfig";
+import {AppRoutes} from "@/utils/linksToPages";
 
 type props = {
 	info: IQuest;
@@ -22,7 +23,7 @@ export const QuestCard = ({info}: props) => {
 			/>
 			<h3 className="h4">{info.title}</h3>
 			<p className="textRegular">{info.description}</p>
-			<Link href={`/${info.slug}`} className="btn textBold">
+			<Link href={AppRoutes.questBySlug(info.slug)} className="btn textBold">
 				Подробнее
 			</Link>
 		</div>

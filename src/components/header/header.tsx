@@ -13,7 +13,7 @@ const Header = (props: props) => {
 		<header className={styles.header}>
 			<div className={`container ${styles.header__container}`}>
 				<Link href={"/"} className={styles.header__logoContainer}>
-					<Image src={Icon} width={50} height={50} alt="icon" style={{height: "50px"}} />
+					<Image src={Icon} width={50} height={50} alt="icon" />
 					<div className={styles.header__containerText}>
 						<p>Погружение</p>
 						<p className={styles.header__greyText}>квесты в Рязани</p>

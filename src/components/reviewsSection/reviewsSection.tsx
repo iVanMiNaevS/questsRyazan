@@ -5,14 +5,15 @@ import {useState} from "react";
 import {reviewService} from "@/services/reviewService";
 import {ReviewCard} from "@/components/reviewCard/reviewCard";
 import styles from "./reviewSection.module.scss";
-import {IReviewsData} from "@/types/reviews.interface";
+import {IReview, IReviewsData} from "@/types/reviews.interface";
 import {AlertUi} from "@/components/alertUi/alertUi";
 import {ReviewModal} from "./reviewModal";
+import {ReviewMobileSlider} from "./reviewMobileSlider";
 
-export const ReviewsSection = ({initialReviews}: {initialReviews: IReviewsData}) => {
-	const [reviews, setReviews] = useState(initialReviews.reviews || []);
-	const [count, setCount] = useState(6);
-	const [hasMore, setHasMore] = useState(initialReviews.reviews);
+export const ReviewsSection = ({initialReviews}: {initialReviews: IReview[]}) => {
+	const [reviews, setReviews] = useState(initialReviews || []);
+	const [count, setCount] = useState(12);
+	const [hasMore, setHasMore] = useState(initialReviews);
 	const [isLoading, setIsLoading] = useState(false);
 	const [errorMessage, setErrorMessage] = useState("");
 	const [ok, setOk] = useState(true);
@@ -25,7 +26,7 @@ export const ReviewsSection = ({initialReviews}: {initialReviews: IReviewsData})
 			setErrorMessage(message);
 			setOk(ok);
 			if (ok && data) {
-				setReviews((prev) => [...prev, ...(data.reviews || [])]);
+				setReviews(() => [...(data.reviews || [])]);
 				setHasMore(data.reviews);
 				setCount((prev) => prev + 6);
 			}
@@ -56,10 +57,12 @@ export const ReviewsSection = ({initialReviews}: {initialReviews: IReviewsData})
 
 				<div className={styles.review__cardWrapp}>
 					{reviews.length > 0
-						? reviews.map((review, index) => <ReviewCard info={review} key={review.id + index} />)
+						? reviews.map((review, index) => (
+								<ReviewCard info={review} key={review.id + index + review.date} />
+						  ))
 						: "Отзывов пока что нет"}
 				</div>
-
+				<ReviewMobileSlider />
 				{hasMore && (
 					<div className={styles.review__btnCont}>
 						<button onClick={loadMoreReviews} className="btn outline textBold" disabled={isLoading}>

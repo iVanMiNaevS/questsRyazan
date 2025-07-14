@@ -3,7 +3,13 @@ import styles from "./rating.module.scss";
 import {questsService} from "@/services/questsService";
 import {QuestCardRating} from "@/components/questCardRating/questCardRating";
 import {AlertUi} from "@/components/alertUi/alertUi";
+import {Metadata} from "next";
 
+export const metadata: Metadata = {
+	title: "Народный рейтинг - Погружение",
+	description:
+		"Квесты в Рязани. Погружение - это уникальная организация, специализирующаяся на проведении захватывающих квестов-перформансов.",
+};
 export default async function Page() {
 	const {data: quests, ok: okQuests, message: messageQuests} = await questsService.getQuests();
 	return (

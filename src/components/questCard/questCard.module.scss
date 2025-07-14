@@ -26,3 +26,11 @@
 		}
 	}
 }
+
+@media (max-width: 800px) {
+	.quest {
+		&__card {
+			width: 100%;
+		}
+	}
+}

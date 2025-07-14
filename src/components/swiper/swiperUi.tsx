@@ -23,7 +23,17 @@ export default function SwiperUi({images}: props) {
 					prevEl: ".custom-swiper-button-prev",
 				}}
 				spaceBetween={20}
-				slidesPerView={3}
+				breakpoints={{
+					320: {
+						slidesPerView: 1,
+					},
+					600: {
+						slidesPerView: 2,
+					},
+					1000: {
+						slidesPerView: 3,
+					},
+				}}
 			>
 				{images.map((src, index) => (
 					<SwiperSlide key={index}>

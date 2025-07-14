@@ -12,18 +12,6 @@ export const MobileMenu = () => {
 		setIsMenuOpen(!isMenuOpen);
 	};
 
-	// Закрытие меню при ресайзе
-	// useEffect(() => {
-	// 	const handleResize = () => {
-	// 		if (window.innerWidth > 930) {
-	// 			setIsMenuOpen(false);
-	// 		}
-	// 	};
-
-	// 	window.addEventListener("resize", handleResize);
-	// 	return () => window.removeEventListener("resize", handleResize);
-	// }, []);
-
 	return (
 		<div className={styles.mobileMenuWrapper}>
 			<button
