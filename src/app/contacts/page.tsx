@@ -1,5 +1,12 @@
 import Image from "next/image";
 import styles from "./contacts.module.scss";
+import {Metadata} from "next";
+
+export const metadata: Metadata = {
+	title: "Контакты - Погружени",
+	description:
+		"Квесты в Рязани. Погружение - это уникальная организация, специализирующаяся на проведении захватывающих квестов-перформансов.",
+};
 
 export default function Page() {
 	const contactLinks = [

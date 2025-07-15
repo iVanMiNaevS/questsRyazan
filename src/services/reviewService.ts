@@ -1,5 +1,6 @@
 import {apiUrl, ServiceResponse} from "./apiConfig";
 import {IReview, IReviewFormData, IReviewsData} from "@/types/reviews.interface";
+import {questsService} from "./questsService";
 
 export const reviewService = {
 	getReviews: async (count: number = 6): Promise<ServiceResponse<IReviewsData>> => {
@@ -38,7 +39,7 @@ export const reviewService = {
 			}
 
 			const response = await fetch(
-				`${apiUrl}/api/Review/getListByQuestId?count=${count}&questId=${id}`,
+				`${apiUrl}/api/Review/getListByQuestId?questId=${id}&count=${count}`,
 				{
 					headers: {
 						Authorization: process.env.NEXT_PUBLIC_QUEST_API_TOKEN,
@@ -64,38 +65,42 @@ export const reviewService = {
 		}
 	},
 	postReviews: async (data: IReviewFormData) => {
-		// fetch questsById => questData
+		const {data: questData, ok, message} = await questsService.getQuestBySlug(data.slug);
 		try {
-			const formData = new FormData();
-			formData.append("Id", data.id.toString());
-			formData.append("Author", data.author);
-			formData.append("Score", data.score.toString());
-			formData.append("Date", data.date);
-			formData.append("Text", data.date);
-			formData.append("Status", data.status);
-			// formData.append("QuestId", questData.id);
-			// formData.append("Quest.Id", questData.id);
-			// formData.append("Quest.Title", questData.title);
-			// formData.append("Quest.Description", questData.description);
-			// formData.append("Quest.Slug", questData.slug);
-			// formData.append("Quest.Banner", questData.banner);
-			// formData.append("Quest.Rating", questData.rating);
-			if (!process.env.NEXT_PUBLIC_QUEST_API_TOKEN) {
-				throw new Error("API token is not configured");
-			}
+			if (questData) {
+				const formData = new FormData();
+				formData.append("Id", data.id.toString());
+				formData.append("Author", data.author);
+				formData.append("Score", data.score.toString());
+				formData.append("Date", data.date);
+				formData.append("Text", data.text);
+				formData.append("Status", data.status);
+				formData.append("QuestId", questData.id.toString());
+				formData.append("Quest.Id", questData.id.toString());
+				formData.append("Quest.Title", questData.title);
+				formData.append("Quest.Description", questData.about);
+				formData.append("Quest.Slug", questData.slug);
+				formData.append("Quest.Banner", questData.banner);
+				formData.append("Quest.Rating", questData.rating.toString());
+				if (!process.env.NEXT_PUBLIC_QUEST_API_TOKEN) {
+					throw new Error("API token is not configured");
+				}
 
-			const response = await fetch(`${apiUrl}/api/Review/addFromClient`, {
-				method: "POST",
-				body: formData,
-				headers: {
-					Authorization: process.env.NEXT_PUBLIC_QUEST_API_TOKEN,
-				},
-			});
-			if (!response.ok) {
-				throw new Error(`HTTP error! status: ${response.status}`);
-			}
+				const response = await fetch(`${apiUrl}/api/Review/addFromClient`, {
+					method: "POST",
+					body: formData,
+					headers: {
+						Authorization: process.env.NEXT_PUBLIC_QUEST_API_TOKEN,
+					},
+				});
+				if (!response.ok) {
+					throw new Error(`HTTP error! status: ${response.status}`);
+				}
 
-			return {message: "ok", ok: true};
+				return {message: "ok", ok: true};
+			} else {
+				throw new Error(`HTTP error! status: ${message}`);
+			}
 		} catch (error) {
 			let errorMessage = "Unknown error occurred";
 

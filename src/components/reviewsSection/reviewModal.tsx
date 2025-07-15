@@ -1,57 +1,60 @@
 "use client";
-import React, {Dispatch, SetStateAction, useState} from "react";
+import React, {Dispatch, SetStateAction, useEffect, useId, useState} from "react";
 import {Modal} from "../Modal/modal";
 
 import styles from "./reviewSection.module.scss";
 import {SkullRating} from "./skullRating";
 import {reviewService} from "@/services/reviewService";
+import {IQuestFull} from "@/types/quests.interface";
+import {questsService} from "@/services/questsService";
+import {generateRandomId} from "@/utils/generateRandomId";
 
 type props = {
 	onOpen: Dispatch<SetStateAction<boolean>>;
 	isOpen: boolean;
-	questId?: number;
+	quest?: IQuestFull;
 };
 
-export const ReviewModal: React.FC<props> = ({onOpen, isOpen, questId}) => {
-	const optionsQuets = [
-		{value: "25", label: "Поворот не туда"},
-		{value: "26", label: "Техасская резня бензопилой"},
-		{value: "27", label: "Оно"},
-		{value: "28", label: "Пропавшие в лесу"},
-		{value: "56", label: "Ночной Порт"},
-		{value: "57", label: "Цех №13"},
-		{value: "58", label: "Мясник"},
-		{value: "59", label: "Бездна"},
-	];
-	const [selectQuest, setSelectQuest] = useState(
-		!questId
-			? optionsQuets[0].label
-			: optionsQuets.find((option) => Number(option.value) === questId)?.label
-	);
+export const ReviewModal: React.FC<props> = ({onOpen, isOpen, quest}) => {
+	const [optionsQuets, setOptionsQuets] = useState<{value: string; label: string}[]>([]);
+	const [selectQuest, setSelectQuest] = useState(quest && quest.title);
 	const [score, setScore] = useState(1);
-	const [selectQuestId, setSelectQuestId] = useState(
-		!questId
-			? optionsQuets[0].value
-			: optionsQuets.find((option) => Number(option.value) === questId)?.value
-	);
+	const [selectQuestSlug, setSelectQuestSlug] = useState(quest && quest.slug);
 	const [author, setAuthor] = useState("");
 	const [text, setText] = useState("");
 	const [isChecked, setIsChecked] = useState(false);
 	const [isRed, setIsRed] = useState(false);
+	console.log(quest);
+	useEffect(() => {
+		questsService.getQuests().then((res) => {
+			if (res.data) {
+				setOptionsQuets(
+					res.data.quests.map((quest) => {
+						return {value: quest.slug, label: quest.title};
+					})
+				);
+				if (!quest) {
+					setSelectQuest(res.data.quests[0].title);
+					setSelectQuestSlug(res.data.quests[0].slug);
+				}
+			}
+		});
+	}, []);
+
 	return (
 		<Modal
-			onSubmit={(e) => {
-				if (e) e.preventDefault();
+			onSubmit={() => {
 				if (isChecked) {
-					reviewService.postReviews({
-						id: 1,
-						author,
-						text,
-						score,
-						date: new Date().toISOString(),
-						status: "public",
-						questId: 3,
-					});
+					if (selectQuestSlug)
+						reviewService.postReviews({
+							id: generateRandomId(),
+							author,
+							text,
+							score,
+							date: new Date().toISOString(),
+							status: "public",
+							slug: selectQuestSlug,
+						});
 					onOpen(false);
 					setIsRed(false);
 					setIsChecked(false);
@@ -79,11 +82,11 @@ export const ReviewModal: React.FC<props> = ({onOpen, isOpen, questId}) => {
 				<div className={styles.modal__forms}>
 					<div className={styles.modal__forms__selectWrapp}>
 						<select
-							value={selectQuestId}
+							value={selectQuestSlug}
 							className="textRegular"
 							onChange={(e) => {
 								setSelectQuest(e.target.options[e.target.selectedIndex].text);
-								setSelectQuestId(e.target.value);
+								setSelectQuestSlug(e.target.value);
 							}}
 						>
 							{optionsQuets.map((option) => (

@@ -1,18 +1,7 @@
 "use client";
+import {formatDatePartsRu, getMonthNameRu} from "@/utils/converDateFromIso";
 import styles from "./questSlug.module.scss";
 import {useState} from "react";
-
-function formatDatePartsRu(dateStr: string) {
-	const date = new Date(dateStr);
-	const day = date.getDate();
-	const weekday = date.toLocaleDateString("ru-RU", {weekday: "short"}).toUpperCase();
-	return {day, weekday};
-}
-
-function getMonthNameRu(dateStr: string): string {
-	const date = new Date(dateStr);
-	return date.toLocaleDateString("ru-RU", {month: "long"});
-}
 
 export default function DateSlider({
 	selectedDate,
@@ -40,7 +29,6 @@ export default function DateSlider({
 	const firstMonth = getMonthNameRu(dates[0]);
 	const lastMonth = getMonthNameRu(dates[dates.length - 1]);
 
-	// Функция для сравнения дат без учета времени
 	const isSameDate = (date1: string, date2: string) => {
 		return new Date(date1).toDateString() === new Date(date2).toDateString();
 	};

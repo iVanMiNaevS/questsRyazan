@@ -1,4 +1,4 @@
-import {IQuest} from "./quests.interface";
+import {IQuest, IQuestFull} from "./quests.interface";
 
 export interface IReviewsData {
 	reviews: IReview[];
@@ -23,12 +23,6 @@ export interface IReviewFormData {
 	score: number;
 	date: string;
 	text: string;
-	questId: number;
+	slug: string;
 	status: "public";
-	// "Quest.Id": number;
-	// "Quest.Title": string;
-	// "Quest.Description": string;
-	// "Quest.Slug": string;
-	// "Quest.Banner": string;
-	// "Quest.Rating": number;
 }

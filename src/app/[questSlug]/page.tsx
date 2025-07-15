@@ -42,11 +42,11 @@ export default async function Page({params}: {params: Promise<{questSlug: string
 		},
 		{
 			text: "время",
-			info: `От ${quest?.minPrice} руб`,
+			info: `${quest?.duration} мин`,
 		},
 		{
 			text: "цена",
-			info: `${quest?.duration} мин`,
+			info: `От ${quest?.minPrice} руб`,
 		},
 	];
 	const infoAbout = [
@@ -208,7 +208,7 @@ export default async function Page({params}: {params: Promise<{questSlug: string
 						</div>
 					</section>
 					{reviews ? (
-						<ReviewsSection initialReviews={reviews} questId={quest.id} />
+						<ReviewsSection initialReviews={reviews} quest={quest} />
 					) : (
 						"Отзывов пока что нет"
 					)}

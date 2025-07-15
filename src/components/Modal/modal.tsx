@@ -47,7 +47,8 @@ export const Modal: React.FC<ModalProps> = ({
 			aria-modal="true"
 		>
 			<form
-				onSubmit={() => {
+				onSubmit={(e) => {
+					e.preventDefault();
 					if (onSubmit) {
 						onSubmit();
 						document.body.classList.remove("disableScroll");

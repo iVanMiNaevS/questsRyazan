@@ -12,3 +12,13 @@ export interface ITariff {
 	title: string;
 	price: number;
 }
+
+export interface IBookingFormData {
+	fio: string;
+	phone: string;
+	email: string;
+	price: number;
+	comment: string;
+	questId: number;
+	date: string;
+}

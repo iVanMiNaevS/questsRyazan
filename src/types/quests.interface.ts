@@ -1,3 +1,5 @@
+import {ISlot} from "./booking.interface";
+
 export interface IQuestData {
 	quests: IQuest[];
 	page: number;
@@ -38,17 +40,4 @@ export interface IQuestFull {
 	isNew: boolean;
 	minPrice: number;
 	slots: ISlot[];
-}
-
-export interface ISlot {
-	id: number;
-	questId: number;
-	status: string;
-	date: string;
-	tariffs: {
-		id: number;
-		slotId: number;
-		title: string;
-		price: number;
-	}[];
 }

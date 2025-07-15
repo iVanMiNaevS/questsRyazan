@@ -1,4 +1,3 @@
-// components/ReviewsSection.tsx
 "use client";
 
 import {useState} from "react";
@@ -9,13 +8,14 @@ import {IReview, IReviewsData} from "@/types/reviews.interface";
 import {AlertUi} from "@/components/alertUi/alertUi";
 import {ReviewModal} from "./reviewModal";
 import {ReviewMobileSlider} from "./reviewMobileSlider";
+import {IQuestFull} from "@/types/quests.interface";
 
 export const ReviewsSection = ({
 	initialReviews,
-	questId,
+	quest,
 }: {
 	initialReviews: IReview[];
-	questId?: number;
+	quest?: IQuestFull;
 }) => {
 	const [reviews, setReviews] = useState(initialReviews || []);
 	const [count, setCount] = useState(12);
@@ -28,8 +28,9 @@ export const ReviewsSection = ({
 	const loadMoreReviews = async () => {
 		setIsLoading(true);
 		try {
-			if (questId) {
-				const {data, ok, message} = await reviewService.getReviewsById(count, questId);
+			if (quest?.id) {
+				console.log("by id");
+				const {data, ok, message} = await reviewService.getReviewsById(count, quest.id);
 				setErrorMessage(message);
 				setOk(ok);
 				if (ok && data) {
@@ -56,7 +57,7 @@ export const ReviewsSection = ({
 
 	return (
 		<section className={styles.review}>
-			<ReviewModal onOpen={setIsOpen} isOpen={isOpen} questId={questId} />
+			<ReviewModal onOpen={setIsOpen} isOpen={isOpen} quest={quest} />
 			{!ok && <AlertUi message={errorMessage} />}
 			<div className="container">
 				<div className={styles.review__header}>

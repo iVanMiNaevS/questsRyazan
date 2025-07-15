@@ -3,9 +3,10 @@ import React, {useEffect, useState} from "react";
 import styles from "./questSlug.module.scss";
 import DateSlider from "./dateSlider";
 import {Slots} from "./slots";
-import {IQuestFull, ISlot} from "@/types/quests.interface";
+import {IQuestFull} from "@/types/quests.interface";
 import {bookingService} from "@/services/bookingService";
 import {AlertUi} from "@/components/alertUi/alertUi";
+import {ISlot} from "@/types/booking.interface";
 
 export const BookingForm = ({quest}: {quest: IQuestFull}) => {
 	const [slots, setSlots] = useState<ISlot[]>([]);
