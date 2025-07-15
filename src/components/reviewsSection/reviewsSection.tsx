@@ -10,7 +10,13 @@ import {AlertUi} from "@/components/alertUi/alertUi";
 import {ReviewModal} from "./reviewModal";
 import {ReviewMobileSlider} from "./reviewMobileSlider";
 
-export const ReviewsSection = ({initialReviews}: {initialReviews: IReview[]}) => {
+export const ReviewsSection = ({
+	initialReviews,
+	questId,
+}: {
+	initialReviews: IReview[];
+	questId?: number;
+}) => {
 	const [reviews, setReviews] = useState(initialReviews || []);
 	const [count, setCount] = useState(12);
 	const [hasMore, setHasMore] = useState(initialReviews);
@@ -22,13 +28,24 @@ export const ReviewsSection = ({initialReviews}: {initialReviews: IReview[]}) =>
 	const loadMoreReviews = async () => {
 		setIsLoading(true);
 		try {
-			const {data, ok, message} = await reviewService.getReviews(count);
-			setErrorMessage(message);
-			setOk(ok);
-			if (ok && data) {
-				setReviews(() => [...(data.reviews || [])]);
-				setHasMore(data.reviews);
-				setCount((prev) => prev + 6);
+			if (questId) {
+				const {data, ok, message} = await reviewService.getReviewsById(count, questId);
+				setErrorMessage(message);
+				setOk(ok);
+				if (ok && data) {
+					setReviews(() => [...(data || [])]);
+					setHasMore(data);
+					setCount((prev) => prev + 6);
+				}
+			} else {
+				const {data, ok, message} = await reviewService.getReviews(count);
+				setErrorMessage(message);
+				setOk(ok);
+				if (ok && data) {
+					setReviews(() => [...(data.reviews || [])]);
+					setHasMore(data.reviews);
+					setCount((prev) => prev + 6);
+				}
 			}
 		} catch (error) {
 			console.error("Error loading more reviews:", error);
@@ -39,7 +56,7 @@ export const ReviewsSection = ({initialReviews}: {initialReviews: IReview[]}) =>
 
 	return (
 		<section className={styles.review}>
-			<ReviewModal onOpen={setIsOpen} isOpen={isOpen} />
+			<ReviewModal onOpen={setIsOpen} isOpen={isOpen} questId={questId} />
 			{!ok && <AlertUi message={errorMessage} />}
 			<div className="container">
 				<div className={styles.review__header}>

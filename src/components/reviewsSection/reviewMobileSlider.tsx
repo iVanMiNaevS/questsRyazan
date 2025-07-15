@@ -64,8 +64,8 @@ export const ReviewMobileSlider = () => {
 							<path
 								d="M14 7L9 12L14 17"
 								strokeWidth="1.33333"
-								stroke-linecap="round"
-								stroke-linejoin="round"
+								strokeLinecap="round"
+								strokeLinejoin="round"
 							></path>
 						</g>
 					</svg>
@@ -82,8 +82,8 @@ export const ReviewMobileSlider = () => {
 							<path
 								d="M14 7L9 12L14 17"
 								strokeWidth="1.33333"
-								stroke-linecap="round"
-								stroke-linejoin="round"
+								strokeLinecap="round"
+								strokeLinejoin="round"
 							></path>
 						</g>
 					</svg>

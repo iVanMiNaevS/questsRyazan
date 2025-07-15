@@ -9,9 +9,10 @@ import {reviewService} from "@/services/reviewService";
 type props = {
 	onOpen: Dispatch<SetStateAction<boolean>>;
 	isOpen: boolean;
+	questId?: number;
 };
 
-export const ReviewModal: React.FC<props> = ({onOpen, isOpen}) => {
+export const ReviewModal: React.FC<props> = ({onOpen, isOpen, questId}) => {
 	const optionsQuets = [
 		{value: "25", label: "Поворот не туда"},
 		{value: "26", label: "Техасская резня бензопилой"},
@@ -22,9 +23,17 @@ export const ReviewModal: React.FC<props> = ({onOpen, isOpen}) => {
 		{value: "58", label: "Мясник"},
 		{value: "59", label: "Бездна"},
 	];
-	const [selectQuest, setSelectQuest] = useState(optionsQuets[0].label);
+	const [selectQuest, setSelectQuest] = useState(
+		!questId
+			? optionsQuets[0].label
+			: optionsQuets.find((option) => Number(option.value) === questId)?.label
+	);
 	const [score, setScore] = useState(1);
-	const [selectQuestId, setSelectQuestId] = useState("string");
+	const [selectQuestId, setSelectQuestId] = useState(
+		!questId
+			? optionsQuets[0].value
+			: optionsQuets.find((option) => Number(option.value) === questId)?.value
+	);
 	const [author, setAuthor] = useState("");
 	const [text, setText] = useState("");
 	const [isChecked, setIsChecked] = useState(false);

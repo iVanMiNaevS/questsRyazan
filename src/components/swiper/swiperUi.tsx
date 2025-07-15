@@ -1,19 +1,34 @@
 "use client";
 
 import {Swiper, SwiperSlide} from "swiper/react";
-import {Navigation, Pagination} from "swiper/modules";
+import {FreeMode, Navigation, Pagination, Thumbs} from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Image, {StaticImageData} from "next/image";
 import styles from "./swiperUi.module.scss";
+import {Modal} from "../Modal/modal";
+import {useState} from "react";
+import {SwiperModal} from "./swiperModal";
 
 type props = {
 	images: (StaticImageData | string)[];
 };
 
 export default function SwiperUi({images}: props) {
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [activeIndex, setActiveIndex] = useState(0);
+
+	const openModal = (index: number) => {
+		setActiveIndex(index);
+		setIsModalOpen(true);
+	};
+
+	const closeModal = () => {
+		setIsModalOpen(false);
+		document.body.classList.remove("disableScroll");
+	};
 	return (
 		<div className={styles.container}>
 			<Swiper
@@ -36,8 +51,12 @@ export default function SwiperUi({images}: props) {
 				}}
 			>
 				{images.map((src, index) => (
-					<SwiperSlide key={index}>
+					<SwiperSlide key={index} className={styles.slide}>
 						<Image
+							onClick={() => {
+								openModal(index);
+								document.body.classList.add("disableScroll");
+							}}
 							width={1080}
 							height={810}
 							src={src}
@@ -81,6 +100,12 @@ export default function SwiperUi({images}: props) {
 					</g>
 				</svg>
 			</button>
+			<SwiperModal
+				isOpen={isModalOpen}
+				onClose={closeModal}
+				initialSlide={activeIndex}
+				images={images}
+			/>
 		</div>
 	);
 }

@@ -8,11 +8,20 @@
 	justify-content: space-between;
 	gap: 1.25rem;
 	&__text {
-		overflow: hidden;
-		display: -webkit-box;
-		-webkit-line-clamp: 5;
-		line-clamp: 5;
-		-webkit-box-orient: vertical;
+		&.clamped {
+			display: -webkit-box;
+			-webkit-line-clamp: 5;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+		}
+	}
+	.toggleButton {
+		padding-top: 20px;
+		background-color: transparent;
+		border: none;
+		outline: none;
+		text-decoration: underline;
+		cursor: pointer;
 	}
 	&__header {
 		display: flex;

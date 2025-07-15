@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, {useEffect, useRef, useState} from "react";
 import styles from "./reviewCard.module.scss";
 import Image from "next/image";
 import {IReview} from "@/types/reviews.interface";
@@ -7,6 +8,26 @@ type props = {
 	info: IReview;
 };
 export const ReviewCard = ({info}: props) => {
+	const [isClamped, setIsClamped] = useState(false);
+	const [isExpanded, setIsExpanded] = useState(false);
+	const textRef = useRef<HTMLParagraphElement>(null);
+
+	// Проверяем, обрезан ли текст
+	useEffect(() => {
+		const checkOverflow = () => {
+			if (textRef.current) {
+				const hasOverflow = textRef.current.scrollHeight > textRef.current.clientHeight;
+				setIsClamped(hasOverflow);
+			}
+		};
+
+		checkOverflow();
+		window.addEventListener("resize", checkOverflow);
+
+		return () => window.removeEventListener("resize", checkOverflow);
+	}, []);
+
+	const toggleExpand = () => setIsExpanded(!isExpanded);
 	return (
 		<div className={styles.review}>
 			<div>
@@ -44,7 +65,17 @@ export const ReviewCard = ({info}: props) => {
 							})}
 					</div>
 				</div>
-				<p className={`textRegular ${styles.review__text}`}>{info.text}</p>
+				<p
+					ref={textRef}
+					className={`textRegular ${styles.review__text} ${!isExpanded ? styles.clamped : ""}`}
+				>
+					{info.text}
+				</p>
+				{isClamped && (
+					<button onClick={toggleExpand} className={styles.toggleButton}>
+						{isExpanded ? "скрыть отзыв" : "читать весь отзыв"}
+					</button>
+				)}
 			</div>
 			<div className={styles.review__footer}>
 				<p className="categories">{formatDateFromISO(info.date)}</p>
