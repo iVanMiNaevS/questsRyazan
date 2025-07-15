@@ -41,7 +41,7 @@
 		display: flex;
 		gap: 1.25rem;
 		button {
-			width: 50%;
+			width: 100%;
 		}
 	}
 }
@@ -52,5 +52,10 @@
 		button {
 			width: 100%;
 		}
+	}
+}
+@media (max-width: 590px) {
+	.modal {
+		max-height: 90vh;
 	}
 }

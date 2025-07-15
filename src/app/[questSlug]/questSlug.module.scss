@@ -245,6 +245,129 @@
 		flex-direction: column;
 		gap: 40px;
 	}
+	&__card {
+		cursor: pointer;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		user-select: none;
+		box-sizing: border-box;
+		width: calc(11.1111111111% - 17.7777777778px);
+		padding: 20px;
+		border-radius: 10px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		gap: 5px;
+		background-color: var(--blackTwo);
+		border: 1px solid transparent;
+		min-width: max-content;
+	}
+	&__cardNotActive {
+		border: 1px solid var(--lightGrey);
+		background-color: transparent;
+	}
+	&Modal {
+		&__infoContainer {
+			margin-top: 40px;
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+		}
+		&__gray {
+			color: var(--lightGrey);
+		}
+		&__date {
+			display: flex;
+			gap: 5px;
+		}
+	}
+}
+
+// modal//////////////////////////////////////////////////
+.bookingModal {
+	&__formRow {
+		display: flex;
+		gap: 20px;
+	}
+	&__forms {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		padding-top: 40px;
+		&__selectWrapp {
+			position: relative;
+		}
+		&__row {
+			position: absolute;
+			right: 20px;
+			top: 45%;
+			transform: translateY(-50%);
+			width: 10px;
+			height: 10px;
+			svg {
+				transform: rotate(-90deg);
+				object-fit: contain;
+			}
+		}
+		select {
+			-webkit-appearance: none;
+			box-sizing: border-box;
+			border-radius: 5px;
+			width: 100%;
+			padding: 20px;
+			border: 1px solid var(--redOrange);
+			outline: none;
+			background-color: transparent;
+			width: 100%;
+			option {
+				background-color: var(--blackTwo);
+			}
+		}
+		&__input {
+			box-sizing: border-box;
+			border-radius: 5px;
+			width: 100%;
+			padding: 20px;
+			border: 1px solid var(--redOrange);
+			outline: none;
+			background-color: transparent;
+		}
+		&__checkBox {
+			display: flex;
+			input {
+				display: none;
+			}
+			label {
+				display: flex;
+				gap: 10px;
+			}
+			input:checked + label::before {
+				content: url("/check.35d7130a.svg");
+			}
+			label::before {
+				cursor: pointer;
+				content: "";
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 18px;
+				height: 18px;
+				padding: 1px;
+				border: 1px solid var(--redOrange);
+				border-radius: 5px;
+				background-color: transparent;
+			}
+			span {
+				width: calc(100% - 30px);
+				display: block;
+				color: var(--lightGrey);
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				user-select: none;
+			}
+		}
+	}
 }
 
 @media (max-width: 800px) {
@@ -346,6 +469,13 @@
 	.booking {
 		&__block {
 			width: calc(14.2857142857% - 10px);
+		}
+	}
+	.bookingModal {
+		&__formRow {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
 		}
 	}
 }

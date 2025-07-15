@@ -41,7 +41,7 @@ export const ReviewModal: React.FC<props> = ({onOpen, isOpen, questId}) => {
 	return (
 		<Modal
 			onSubmit={(e) => {
-				e.preventDefault();
+				if (e) e.preventDefault();
 				if (isChecked) {
 					reviewService.postReviews({
 						id: 1,
@@ -53,6 +53,8 @@ export const ReviewModal: React.FC<props> = ({onOpen, isOpen, questId}) => {
 						questId: 3,
 					});
 					onOpen(false);
+					setIsRed(false);
+					setIsChecked(false);
 				} else {
 					setIsRed(true);
 				}
@@ -63,7 +65,6 @@ export const ReviewModal: React.FC<props> = ({onOpen, isOpen, questId}) => {
 			closeOnOutsideClick
 			onClose={() => {
 				onOpen(false);
-				document.body.classList.remove("disableScroll");
 			}}
 			isOpen={isOpen}
 		>

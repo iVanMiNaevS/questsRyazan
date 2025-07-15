@@ -45,12 +45,10 @@ export interface ISlot {
 	questId: number;
 	status: string;
 	date: string;
-	tariffs: [
-		{
-			id: number;
-			slotId: number;
-			title: string;
-			price: number;
-		}
-	];
+	tariffs: {
+		id: number;
+		slotId: number;
+		title: string;
+		price: number;
+	}[];
 }

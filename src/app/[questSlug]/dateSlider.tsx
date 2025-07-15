@@ -14,9 +14,14 @@ function getMonthNameRu(dateStr: string): string {
 	return date.toLocaleDateString("ru-RU", {month: "long"});
 }
 
-export default function DateSlider() {
+export default function DateSlider({
+	selectedDate,
+	setSelectedDate,
+}: {
+	selectedDate: string; // Ожидается полная ISO строка (2025-07-16T14:38:03.992Z)
+	setSelectedDate: React.Dispatch<React.SetStateAction<string>>;
+}) {
 	const [startIndex, setStartIndex] = useState(0);
-	const [selectedDate, setSelectedDate] = useState<string | null>(null);
 
 	const generateDates = (start: number, count: number) => {
 		const dates: string[] = [];
@@ -25,7 +30,7 @@ export default function DateSlider() {
 		for (let i = 0; i < count; i++) {
 			const date = new Date(today);
 			date.setDate(today.getDate() + start + i);
-			dates.push(date.toISOString().split("T")[0]);
+			dates.push(date.toISOString()); // Сохраняем полный ISO формат
 		}
 
 		return dates;
@@ -35,13 +40,17 @@ export default function DateSlider() {
 	const firstMonth = getMonthNameRu(dates[0]);
 	const lastMonth = getMonthNameRu(dates[dates.length - 1]);
 
+	// Функция для сравнения дат без учета времени
+	const isSameDate = (date1: string, date2: string) => {
+		return new Date(date1).toDateString() === new Date(date2).toDateString();
+	};
+
 	return (
 		<div className={styles.booking__dateList}>
 			<div className={styles.booking__list}>
 				{dates.map((date) => {
 					const {day, weekday} = formatDatePartsRu(date);
-
-					const isActive = selectedDate === date;
+					const isActive = isSameDate(selectedDate, date);
 
 					return (
 						<button

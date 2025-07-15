@@ -7,8 +7,7 @@ import SwiperUi from "@/components/swiper/swiperUi";
 import {ReviewsSection} from "@/components/reviewsSection/reviewsSection";
 import {reviewService} from "@/services/reviewService";
 import {AlertUi} from "@/components/alertUi/alertUi";
-import DateSlider from "@/app/[questSlug]/dateSlider";
-import {Slots} from "./slots";
+import {BookingForm} from "./bookingForm";
 
 export async function generateMetadata({
 	params,
@@ -205,18 +204,7 @@ export default async function Page({params}: {params: Promise<{questSlug: string
 								<h2 className="h2">Забронировать</h2>
 								<p>скидка 10% при первом бронировании</p>
 							</div>
-							<div className={styles.booking__formContainer}>
-								<div className={styles.booking__dateContainer}>
-									<p className="textBold">Выберите дату</p>
-									<DateSlider />
-								</div>
-								<div className={styles.booking__timeContainer}>
-									<p className={`${styles.bookingSection__title} textBold`}>
-										Выберите время <span className="textRegular">сеанс 60 минут</span>
-									</p>
-									{/* <Slots slots={} /> */}
-								</div>
-							</div>
+							<BookingForm quest={quest} />
 						</div>
 					</section>
 					{reviews ? (

@@ -65,7 +65,6 @@ export const ReviewsSection = ({
 						className="btn textBold"
 						onClick={() => {
 							setIsOpen(true);
-							document.body.classList.add("disableScroll");
 						}}
 					>
 						Оставить отзыв
