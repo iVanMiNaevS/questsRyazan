@@ -18,8 +18,7 @@ export default async function Page() {
 			<section
 				className={styles.hero}
 				style={{
-					background:
-						"linear-gradient(180deg, transparent 40%, #080a0c), url(http://localhost:3000/back.b30bf53f.webp) #d3d3d3 50% / cover no-repeat",
+					background: `linear-gradient(180deg, transparent 40%, #080a0c), url(${process.env.NEXT_PUBLIC_APP_URL}/back.b30bf53f.webp) #d3d3d3 50% / cover no-repeat`,
 				}}
 			>
 				<div className={`container`}>
