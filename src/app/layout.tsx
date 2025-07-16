@@ -6,11 +6,13 @@ import {Footer} from "@/components/footer/footer";
 
 const roboto = Roboto({
 	variable: "--font-roboto",
+	subsets: ["cyrillic", "latin"],
 });
 
 const anonymousPro = Anonymous_Pro({
 	variable: "--font-anonymous",
 	weight: ["400", "700"],
+	subsets: ["cyrillic", "latin"],
 });
 
 export const metadata: Metadata = {
