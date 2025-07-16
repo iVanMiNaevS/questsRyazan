@@ -17,13 +17,13 @@ export const metadata: Metadata = {
 
 export default async function Home() {
 	const images = [
-		"http://localhost:3000/about_1.aab016b4.webp",
-		"http://localhost:3000/about_2.d8ec977d.webp",
-		"http://localhost:3000/about_3.b10aa9be.webp",
-		"http://localhost:3000/about_4.95e1e0ea.webp",
-		"http://localhost:3000/about_5.807f67a9.webp",
-		"http://localhost:3000/about_6.314ff98e.webp",
-		"http://localhost:3000/about_7.ddfeea40.webp",
+		`${process.env.NEXT_PUBLIC_APP_URL}/about_1.aab016b4.webp`,
+		`${process.env.NEXT_PUBLIC_APP_URL}/about_2.d8ec977d.webp`,
+		`${process.env.NEXT_PUBLIC_APP_URL}/about_3.b10aa9be.webp`,
+		`${process.env.NEXT_PUBLIC_APP_URL}/about_4.95e1e0ea.webp`,
+		`${process.env.NEXT_PUBLIC_APP_URL}/about_5.807f67a9.webp`,
+		`${process.env.NEXT_PUBLIC_APP_URL}/about_6.314ff98e.webp`,
+		`${process.env.NEXT_PUBLIC_APP_URL}/about_7.ddfeea40.webp`,
 	];
 	const {data: quests, ok: okQuests, message: messageQuests} = await questsService.getQuests();
 	const {data: reviews, ok: okReview, message: messageReview} = await reviewService.getReviews(6);

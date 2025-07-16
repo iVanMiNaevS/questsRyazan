@@ -23,7 +23,7 @@ export const QuestCard = ({info}: props) => {
 			/>
 			<h3 className="h4">{info.title}</h3>
 			<p className="textRegular">{info.description}</p>
-			<Link href={AppRoutes.questBySlug(info.slug)} className="btn textBold">
+			<Link prefetch href={AppRoutes.questBySlug(info.slug)} className="btn textBold">
 				Подробнее
 			</Link>
 		</div>

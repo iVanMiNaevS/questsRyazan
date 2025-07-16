@@ -15,7 +15,13 @@ export default async function Page() {
 	return (
 		<div>
 			{!okQuests && <AlertUi message={messageQuests} />}
-			<section className={styles.hero}>
+			<section
+				className={styles.hero}
+				style={{
+					background:
+						"linear-gradient(180deg, transparent 40%, #080a0c), url(http://localhost:3000/back.b30bf53f.webp) #d3d3d3 50% / cover no-repeat",
+				}}
+			>
 				<div className={`container`}>
 					<div className={styles.hero__textWrapp}>
 						<h1 className="h1">Народный рейтинг</h1>

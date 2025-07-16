@@ -13,6 +13,7 @@ const HeaderLinks: FC<Props> = ({links}) => {
 			{links.map((link) => {
 				return (
 					<Link
+						prefetch
 						key={link.href}
 						href={link.href}
 						className={`link ${path === link.href && "active"}`}
